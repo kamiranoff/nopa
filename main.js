@@ -1,24 +1,15 @@
 import Expo from 'expo';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 
-class App extends React.Component {
+import App from './src/components/App';
+
+class Main extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up main.js to start working on your app!</Text>
-      </View>
+      <App />
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
-Expo.registerRootComponent(App);
+Expo.registerRootComponent(Main);
