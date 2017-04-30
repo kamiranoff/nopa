@@ -3,8 +3,6 @@ import { TouchableHighlight, View } from 'react-native';
 
 import { NOPAText } from '../index';
 
-import styles from './styles';
-
 const NOPAButton = ({
                       fontSize,
                       fontFamily,
@@ -26,6 +24,7 @@ const NOPAButton = ({
   >
     <View>
       <NOPAText
+        textStyle={{ paddingVertical: 10, paddingHorizontal: 20 }}
       >
         {title}
       </NOPAText>
