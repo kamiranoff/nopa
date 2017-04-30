@@ -7,38 +7,12 @@ import TitleDescription from '../../components/TitleDescription/TitleDescription
 import ImageList from '../../components/ImageList/ImageList';
 import styles from './styles';
 
-
-const barclays = require('../../../assets/banks/barclays.png');
-const hsbc = require('../../../assets/banks/hsbc.png');
-const lloydsBank = require('../../../assets/banks/lloyds-bank.png');
-const natwest = require('../../../assets/banks/natwest.png');
-const santander = require('../../../assets/banks/santander.png');
-const tsb = require('../../../assets/banks/tsb.png');
-
-const banks = [{
-  name: 'Barclays',
-  img: barclays,
-}, {
-  name: 'HSBC',
-  img: hsbc,
-}, {
-  name: 'Lloyds Bank',
-  img: lloydsBank,
-}, {
-  name: 'Natwest',
-  img: natwest,
-}, {
-  name: 'Santander',
-  img: santander,
-}, {
-  name: 'TSB',
-  img: tsb,
-},
-]
+import banks from '../../constants/banks';
 
 class BankSelectionPage extends Component {
 
   render() {
+    const { navigate } = this.props.navigation
     return (
       <View style={styles.container}>
         <TitleDescription
@@ -51,7 +25,7 @@ class BankSelectionPage extends Component {
         <NOPAButton
           title="Continue"
           onPress={() => {
-            console.log('here');
+            navigate('LoginPage')
           }}
         />
       </View>
