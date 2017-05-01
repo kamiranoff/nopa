@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { View, TextInput } from 'react-native';
+import { connect } from 'react-redux';
+
+import { fetchTransactions } from '../../redux/actions/transactions';
 
 import { NOPAButton } from '../../common';
 import TitleDescription from '../../components/TitleDescription/TitleDescription';
@@ -17,6 +20,12 @@ class LoginPage extends Component {
       passcode: '',
       memorableWord: '',
     };
+  }
+
+  onPress() {
+    console.log(this.state);
+
+    this.props.fetchTransactions();
   }
 
   render() {
@@ -71,7 +80,7 @@ class LoginPage extends Component {
         <NOPAButton
           title="Continue"
           onPress={() => {
-            console.log('BankSelectionPage')
+            this.onPress();
           }}
         />
 
@@ -80,4 +89,4 @@ class LoginPage extends Component {
   }
 }
 
-export default LoginPage;
+export default connect(null, { fetchTransactions })(LoginPage);
