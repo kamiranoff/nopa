@@ -19,13 +19,23 @@ class LoginPage extends Component {
       accountNumber: '',
       passcode: '',
       memorableWord: '',
+      loading: false,
     };
   }
 
-  onPress() {
-    console.log(this.state);
+  isLoading(state) {
+    this.setState({ loading: state });
+  }
 
-    this.props.fetchTransactions();
+  onPress() {
+    this.props.fetchTransactions(this.state);
+  }
+
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.transactions.length) {
+      nextProps.navigation.navigate('TransactionsPage');
+    }
   }
 
   render() {
@@ -40,7 +50,7 @@ class LoginPage extends Component {
             style={styles.input}
             value={this.state.surname}
             placeholder={'Surname'}
-            onChange={(surname) => this.setState({ surname })}
+            onChangeText={(surname) => this.setState({ surname })}
             placeholderTextColor={'rgba(255,255,255,0.8)'}
           />
         </View>
@@ -49,7 +59,7 @@ class LoginPage extends Component {
             style={styles.input}
             value={this.state.sortCode}
             placeholder={'Sort code'}
-            onChange={(sortCode) => this.setState({ sortCode })}
+            onChangeText={(sortCode) => this.setState({ sortCode })}
             placeholderTextColor={'rgba(255,255,255,0.8)'}
           /></View>
         <View style={styles.inputView}>
@@ -57,7 +67,7 @@ class LoginPage extends Component {
             style={styles.input}
             value={this.state.accountNumber}
             placeholder={'Account Number'}
-            onChange={(accountNumber) => this.setState({ accountNumber })}
+            onChangeText={(accountNumber) => this.setState({ accountNumber })}
             placeholderTextColor={'rgba(255,255,255,0.8)'}
           /></View>
         <View style={styles.inputView}>
@@ -65,7 +75,7 @@ class LoginPage extends Component {
             style={styles.input}
             value={this.state.passcode}
             placeholder={'Passcode'}
-            onChange={(passcode) => this.setState({ passcode })}
+            onChangeText={(passcode) => this.setState({ passcode })}
             placeholderTextColor={'rgba(255,255,255,0.8)'}
           /></View>
         <View style={styles.inputView}>
@@ -73,11 +83,12 @@ class LoginPage extends Component {
             style={styles.input}
             value={this.state.memorableWord}
             placeholder={'Memorable word'}
-            onChange={(memorableWord) => this.setState({ memorableWord })}
+            onChangeText={(memorableWord) => this.setState({ memorableWord })}
             placeholderTextColor={'rgba(255,255,255,0.8)'}
           />
         </View>
         <NOPAButton
+          isDisabled={this.state.loading}
           title="Continue"
           onPress={() => {
             this.onPress();
@@ -89,4 +100,8 @@ class LoginPage extends Component {
   }
 }
 
-export default connect(null, { fetchTransactions })(LoginPage);
+const mapStateToProps = ({ transactions: { transactions } }) => ({
+  transactions,
+});
+
+export default connect(mapStateToProps, { fetchTransactions })(LoginPage);

@@ -11,7 +11,8 @@ const NOPAButton = ({
                       onPress,
                       title,
                       backgroundColor,
-                      children
+                      children,
+                      isDisabled,
                     }) => (
   <TouchableHighlight
     title={title}
@@ -21,6 +22,7 @@ const NOPAButton = ({
       backgroundColor
     }, textStyle]}
     onPress={onPress}
+    disabled={isDisabled}
   >
     <View>
       <NOPAText

@@ -25,11 +25,11 @@ const receiveTransactions = (response) => ({
   transactions: response.data,
 });
 
-export function fetchTransactions() {
+export function fetchTransactions(params, cb) {
   const endPoint = ENV.API.TRANSACTIONS;
   const method = 'get';
   const headers = {
-    'Accept':'application/json',
+    'Accept': 'application/json',
     'Content-type': 'application/json',
     'Client-id': ENV.CLIENT_ID,
     'Service-secret': ENV.SERVICE_SECRET,
@@ -39,11 +39,15 @@ export function fetchTransactions() {
     dispatch(requestTransactions());
     return callApi(endPoint, 'get', headers)
       .then((response) => {
-      console.log(response);
+        console.log(response);
         if (response.error_message || response.error_class) {
           dispatch(requestTransactionFails(response));
         } else {
           dispatch(receiveTransactions(response));
+        }
+      }).then(() => {
+        if (typeof cb === 'function') {
+          cb();
         }
       });
   };

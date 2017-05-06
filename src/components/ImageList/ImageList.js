@@ -24,6 +24,8 @@ const ImageList = ({ blocks }) => {
         >
           <Image
             source={block.img}
+            style={{ maxWidth: Dimensions.get('window').width / 3 }}
+            resizeMode='contain'
           />
         </View>
       ))}
