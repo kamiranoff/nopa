@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import { View, Text, ListView } from 'react-native';
 import { connect } from 'react-redux';
 
+import Helpers from '../../util/Helpers';
+
 import styles from './styles';
+import Theme from '../../constants/theme';
+
 
 class TransactionsPage extends Component {
 
@@ -16,42 +20,32 @@ class TransactionsPage extends Component {
     });
 
     this.state = {
-      dataSource: ds.cloneWithRowsAndSections(this.convertTransactionArray(props.transactions)),
+      dataSource: ds.cloneWithRowsAndSections(Helpers.convertTransactionArray(cdprops.transactions)),
     };
-  }
-
-  convertTransactionArray(transactions) {
-    const transactionsMap = {}; // Create the blank map
-    transactions.forEach(function(transaction) {
-      if (!transactionsMap[transaction.made_on]) {
-        // Create an entry in the map for the category if it hasn't yet been created
-        transactionsMap[transaction.made_on] = [];
-      }
-
-      transactionsMap[transaction.made_on].push(transaction);
-
-    });
-
-    return transactionsMap;
-
   }
 
   _renderSectionHeader(sectionData, made_on) {
     return (
-      <View style={{backgroundColor:'#ddd', padding:10}}>
-        <Text style={{ fontWeight: "700" }}>{made_on}</Text>
+      <View style={{ backgroundColor: Theme.colors.BACKGROUND_COLOR_3, padding: 10 }}>
+        <Text style={{ color: Theme.colors.TEXT_COLOR_2 }}>{made_on}</Text>
       </View>
     );
   }
 
   _renderRow(data) {
     return (
-      <View style={{ flex: 1, flexDirection: 'column', backgroundColor: '#efefef', padding:10  }}>
-        <Text style={{ flex: 1, textAlign: 'left' }}>
-          {data.category}
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'row',
+          backgroundColor: Theme.colors.BACKGROUND_COLOR_2,
+          padding: 20,
+        }}>
+        <Text style={{ textAlign: 'left', flex: 1 }}>
+          {data.category.toUpperCase()}
         </Text>
-        <Text style={{ flex: 1, textAlign: 'right' }}>
-          {data.amount} {data.currency_code}
+        <Text style={{ textAlign: 'right', flex: 1 }}>
+          {data.currency_code} {data.amount}
         </Text>
       </View>);
   }
@@ -61,19 +55,21 @@ class TransactionsPage extends Component {
       <View style={styles.container}>
         <View style={styles.blocks}>
           <View style={styles.leftBlock}>
-            <Text>TransactionsPage</Text>
+            <Text style={{ color: Theme.colors.TEXT_COLOR }}>TransactionsPage</Text>
           </View>
           <View style={styles.rightBlock}>
-            <Text style={{ textAlign: 'right' }}>TransactionsPage</Text>
+            <Text style={{ textAlign: 'right', color: Theme.colors.TEXT_COLOR }}>TransactionsPage</Text>
           </View>
         </View>
-        <View style={{flex:10}}>
-        <Text>Your transactions for the last 30 days</Text>
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={this._renderRow}
-          renderSectionHeader={this._renderSectionHeader}
-        />
+        <View style={{ flex: 10 }}>
+          <Text style={{ color: Theme.colors.TEXT_COLOR, margin: 20 }}>Your transactions for the last 30 days</Text>
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={this._renderRow}
+            renderSectionHeader={this._renderSectionHeader}
+            renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+
+          />
         </View>
       </View>
     );

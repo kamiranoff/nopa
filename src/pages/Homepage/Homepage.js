@@ -11,21 +11,25 @@ class Homepage extends Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <NOPAText
-          fontSize={30}
-          textStyle={styles.textStyle}
-        >NOPA</NOPAText>
-        <TitleDescription
-        title="Welcome to Zopa connect"
-        desc="Keep track of all your expenses by connecting as many bank accounts as you’d like to your Zopa app"
-        />
-        <NOPAButton
-          title="Select your fake bank account"
-          onPress={() => {
-            console.log('here');
-            navigate('BankSelectionPage')
-          }}
-        />
+        <View style={{ flex: 1, justifyContent: 'center' }}>
+          <NOPAText
+            fontSize={30}
+            textStyle={styles.textStyle}
+          >NOPA</NOPAText>
+          <TitleDescription
+            title="Welcome to Zopa connect"
+            desc="Keep track of all your expenses by connecting as many bank accounts as you’d like to your Zopa app"
+          />
+        </View>
+        <View>
+          <NOPAButton
+            title="Select your fake bank account"
+            onPress={() => {
+              console.log('here');
+              navigate('BankSelectionPage')
+            }}
+          />
+        </View>
 
       </View>
     );

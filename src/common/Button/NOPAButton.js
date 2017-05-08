@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { TouchableHighlight, View } from 'react-native';
+import { TouchableHighlight, View, Dimensions } from 'react-native';
 
 import { NOPAText } from '../index';
 
@@ -26,7 +26,7 @@ const NOPAButton = ({
   >
     <View>
       <NOPAText
-        textStyle={{ paddingVertical: 10, paddingHorizontal: 20 }}
+        textStyle={{ padding: 20, textAlign: 'center', color: '#fff' }}
       >
         {title}
       </NOPAText>
@@ -37,10 +37,11 @@ const NOPAButton = ({
 NOPAButton.defaultProps = {
   fontSize: 18,
   fontFamily: 'Arial',
-  color: '#444',
   textStyle: {
     marginTop: 10,
     marginBottom: 5,
+    width: Dimensions.get('window').width - (Dimensions.get('window').width / 10),
+
   },
   backgroundColor: '#F97056'
 };
