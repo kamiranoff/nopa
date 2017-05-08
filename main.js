@@ -1,4 +1,4 @@
-import Expo from 'expo';
+import Expo, { Font } from 'expo';
 import React from 'react';
 
 import App from './src/components/App';
@@ -9,7 +9,28 @@ import configureStore from './src/redux/store';
 const store = configureStore();
 
 class Main extends React.Component {
+
+  constructor(){
+    super();
+
+    this.state = {
+      fontLoaded: false,
+    }
+  }
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      'monserratSemiBold': require('./assets/fonts/Montserrat-SemiBold.otf'),
+      'robotoRegular': require('./assets/fonts/Roboto-Regular.ttf'),
+      'robotoBold': require('./assets/fonts/Roboto-Bold.ttf'),
+    });
+    this.setState({ fontLoaded: true });
+  }
+
   render() {
+    if(!this.state.fontLoaded) {
+      return null;
+    }
     return (
       <Provider store={store}>
         <App />
@@ -17,6 +38,5 @@ class Main extends React.Component {
     );
   }
 }
-
 
 Expo.registerRootComponent(Main);

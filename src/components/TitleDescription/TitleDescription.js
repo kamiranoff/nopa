@@ -9,7 +9,7 @@ const TitleDescription = ({ title, desc }) => (
   <View>
     <NOPAText
       fontSize={25}
-      textStyle={styles.textStyle}
+      textStyle={styles.titleStyle}
     >
       {title}
     </NOPAText>

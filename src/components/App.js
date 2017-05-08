@@ -16,22 +16,26 @@ const App = StackNavigator({
       title: 'Homepage',
       headerStyle: styles.headerStyle,
       headerTitleStyle: styles.headerTitleStyle,
+      headerTintColor: '#fff'
     }
   },
-  BankSelectionPage:{
+  BankSelectionPage: {
     screen: BankSelectionPage,
     navigationOptions: {
       title: 'Choose Bank',
       headerStyle: styles.headerStyle,
       headerTitleStyle: styles.headerTitleStyle,
+      headerTintColor: '#fff'
+
     }
   },
-  LoginPage:{
+  LoginPage: {
     screen: LoginPage,
     navigationOptions: {
       title: 'Connect to your bank account',
       headerStyle: styles.headerStyle,
       headerTitleStyle: styles.headerTitleStyle,
+      headerTintColor: '#fff'
     }
   },
   TransactionsPage: {
@@ -40,6 +44,8 @@ const App = StackNavigator({
       title: 'Your Transactions',
       headerStyle: styles.headerStyle,
       headerTitleStyle: styles.headerTitleStyle,
+      headerTintColor: '#fff'
+
     }
   }
 });

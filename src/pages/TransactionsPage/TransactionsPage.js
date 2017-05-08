@@ -7,6 +7,7 @@ import Helpers from '../../util/Helpers';
 import styles from './styles';
 import Theme from '../../constants/theme';
 
+import CustomerDetails from '../../components/CustomerDetails/CustomerDetails';
 
 class TransactionsPage extends Component {
 
@@ -16,11 +17,10 @@ class TransactionsPage extends Component {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
       sectionHeaderHasChanged: (s1, s2) => s1 !== s2
-
     });
 
     this.state = {
-      dataSource: ds.cloneWithRowsAndSections(Helpers.convertTransactionArray(cdprops.transactions)),
+      dataSource: ds.cloneWithRowsAndSections(Helpers.convertTransactionArray(props.transactions)),
     };
   }
 
@@ -53,16 +53,10 @@ class TransactionsPage extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.blocks}>
-          <View style={styles.leftBlock}>
-            <Text style={{ color: Theme.colors.TEXT_COLOR }}>TransactionsPage</Text>
-          </View>
-          <View style={styles.rightBlock}>
-            <Text style={{ textAlign: 'right', color: Theme.colors.TEXT_COLOR }}>TransactionsPage</Text>
-          </View>
+        <View style={{ flex: 2 }}>
+          <CustomerDetails />
         </View>
         <View style={{ flex: 10 }}>
-          <Text style={{ color: Theme.colors.TEXT_COLOR, margin: 20 }}>Your transactions for the last 30 days</Text>
           <ListView
             dataSource={this.state.dataSource}
             renderRow={this._renderRow}

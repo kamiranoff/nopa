@@ -8,10 +8,10 @@ export default StyleSheet.create({
     padding: 20,
     backgroundColor: '#304FFE',
   },
-  textStyle: {
+  titleStyle: {
     textAlign: 'center',
     marginTop: 10,
     marginBottom: 5,
-    color:'#fff'
+    color: '#fff',
   }
 });
