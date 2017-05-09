@@ -17,7 +17,7 @@ const NOPAText = ({ fontSize, fontFamily, color, textStyle, children }) => (
 NOPAText.defaultProps = {
   fontSize: 18,
   fontFamily: 'monserratSemiBold',
-  color: '#444',
+  color: '#fff',
   textStyle: {
     marginTop: 10,
     marginBottom: 5,

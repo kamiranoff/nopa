@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 
 import debounce from 'lodash.debounce';
 
@@ -34,6 +34,7 @@ class BankSelectionPage extends Component {
             this._navigate('LoginPage');
           }}
         />
+
       </View>
     );
   }

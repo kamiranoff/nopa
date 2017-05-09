@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { View, TextInput } from 'react-native';
+import { ScrollView, View, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
 
 import { fetchTransactions } from '../../redux/actions/transactions';
 
-import { NOPAButton } from '../../common';
+import { NOPAButton, NOPAText } from '../../common';
 import TitleDescription from '../../components/TitleDescription/TitleDescription';
 
 import styles from './styles';
@@ -21,6 +21,7 @@ class LoginPage extends Component {
       passcode: '',
       memorableWord: '',
       loading: false,
+      error: ''
     };
   }
 
@@ -31,16 +32,17 @@ class LoginPage extends Component {
   }, 500);
 
   onPress() {
-    // if(
-    //   this.state.surname
-    //   && this.state.sortCode
-    //   && this.state.accountNumber
-    //   && this.state.passcode
-    //   && this.state.memorableWord
-    // ){
-    this.props.fetchTransactions(this.state);
-
-//    }
+    if (
+      this.state.surname
+      && this.state.sortCode
+      && this.state.accountNumber
+      && this.state.passcode
+      && this.state.memorableWord
+    ) {
+      this.props.fetchTransactions(this.state);
+    } else {
+      this.setState({ error: 'Please fill the form' })
+    }
   }
 
 
@@ -52,8 +54,9 @@ class LoginPage extends Component {
 
   render() {
     return (
+      <ScrollView>
       <View style={styles.container}>
-        <View style={{ flex: 1 }}>
+        <View>
           <TitleDescription
             title="Log in to your online banking"
             desc="Enter the same details you use to login to your online banking"
@@ -64,7 +67,7 @@ class LoginPage extends Component {
                 style={styles.input}
                 value={this.state.surname}
                 placeholder={'Surname'}
-                onChangeText={(surname) => this.setState({ surname })}
+                onChangeText={(surname) => this.setState({ surname, error:'' })}
                 placeholderTextColor={'rgba(255,255,255,0.8)'}
               />
             </View>
@@ -73,7 +76,7 @@ class LoginPage extends Component {
                 style={styles.input}
                 value={this.state.sortCode}
                 placeholder={'Sort code'}
-                onChangeText={(sortCode) => this.setState({ sortCode })}
+                onChangeText={(sortCode) => this.setState({ sortCode, error:'' })}
                 placeholderTextColor={'rgba(255,255,255,0.8)'}
               /></View>
             <View style={styles.inputView}>
@@ -81,7 +84,7 @@ class LoginPage extends Component {
                 style={styles.input}
                 value={this.state.accountNumber}
                 placeholder={'Account Number'}
-                onChangeText={(accountNumber) => this.setState({ accountNumber })}
+                onChangeText={(accountNumber) => this.setState({ accountNumber, error:'' })}
                 placeholderTextColor={'rgba(255,255,255,0.8)'}
               /></View>
             <View style={styles.inputView}>
@@ -89,7 +92,7 @@ class LoginPage extends Component {
                 style={styles.input}
                 value={this.state.passcode}
                 placeholder={'Passcode'}
-                onChangeText={(passcode) => this.setState({ passcode })}
+                onChangeText={(passcode) => this.setState({ passcode, error:'' })}
                 placeholderTextColor={'rgba(255,255,255,0.8)'}
               /></View>
             <View style={styles.inputView}>
@@ -97,12 +100,17 @@ class LoginPage extends Component {
                 style={styles.input}
                 value={this.state.memorableWord}
                 placeholder={'Memorable word'}
-                onChangeText={(memorableWord) => this.setState({ memorableWord })}
+                onChangeText={(memorableWord) => this.setState({ memorableWord, error:'' })}
                 placeholderTextColor={'rgba(255,255,255,0.8)'}
               />
             </View>
           </View>
         </View>
+        {this.state.error ?
+          <NOPAText
+          >
+            {this.state.error}
+          </NOPAText> : null }
         <NOPAButton
           isDisabled={this.state.loading}
           title="Continue"
@@ -111,6 +119,7 @@ class LoginPage extends Component {
           }}
         />
       </View>
+      </ScrollView>
     );
   }
 }

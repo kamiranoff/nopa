@@ -10,7 +10,7 @@ const store = configureStore();
 
 class Main extends React.Component {
 
-  constructor(){
+  constructor() {
     super();
 
     this.state = {
@@ -28,7 +28,7 @@ class Main extends React.Component {
   }
 
   render() {
-    if(!this.state.fontLoaded) {
+    if (!this.state.fontLoaded) {
       return null;
     }
     return (
