@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, View, TextInput } from 'react-native';
+import { ScrollView, View, TextInput, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
 
@@ -61,7 +61,7 @@ class LoginPage extends Component {
             title="Log in to your online banking"
             desc="Enter the same details you use to login to your online banking"
           />
-          <View style={{ marginTop: 20 }}>
+          <KeyboardAvoidingView behavior='padding' style={{ marginTop: 20 }}>
             <View style={styles.inputView}>
               <TextInput
                 style={styles.input}
@@ -104,7 +104,7 @@ class LoginPage extends Component {
                 placeholderTextColor={'rgba(255,255,255,0.8)'}
               />
             </View>
-          </View>
+          </KeyboardAvoidingView>
         </View>
         {this.state.error ?
           <NOPAText

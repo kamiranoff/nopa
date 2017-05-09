@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Image, Dimensions } from 'react-native';
+import { View, Image, Dimensions, TouchableOpacity } from 'react-native';
 
-const ImageList = ({ blocks }) => {
+const ImageList = ({ blocks, onPress, selectedBank }) => {
   return (
     <View
       style={{
@@ -11,7 +11,8 @@ const ImageList = ({ blocks }) => {
         justifyContent: 'center',
       }}>
       {blocks.map((block, i) => (
-        <View
+        <TouchableOpacity
+          activeOpacity={0.9}
           style={{
             backgroundColor: 'white',
             margin: 10,
@@ -19,7 +20,10 @@ const ImageList = ({ blocks }) => {
             height: 100,
             justifyContent: 'center',
             alignItems: 'center',
+            borderWidth: (selectedBank === i) ? 2 : 0,
+            borderColor: "#F97056"
           }}
+          onPress={() => onPress(i)}
           key={`${block.name} + ${i}`}
         >
           <Image
@@ -30,7 +34,7 @@ const ImageList = ({ blocks }) => {
             }}
             resizeMode='contain'
           />
-        </View>
+        </TouchableOpacity>
       ))}
     </View>
   )

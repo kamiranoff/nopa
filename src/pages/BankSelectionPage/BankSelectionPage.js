@@ -13,6 +13,14 @@ import banks from '../../constants/banks';
 
 class BankSelectionPage extends Component {
 
+  constructor() {
+    super();
+
+    this.state = {
+      selectedBank: null,
+    }
+  }
+
   _navigate = debounce((pageName) => {
     const { navigate } = this.props.navigation
     navigate(pageName);
@@ -27,6 +35,9 @@ class BankSelectionPage extends Component {
         />
         <ImageList
           blocks={banks}
+          selectedBank={this.state.selectedBank}
+          onPress={
+            (i) => this.setState({ selectedBank: i })}
         />
         <NOPAButton
           title="Continue"
