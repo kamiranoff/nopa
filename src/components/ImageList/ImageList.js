@@ -26,7 +26,7 @@ const ImageList = ({ blocks }) => {
             source={block.img}
             style={{
               maxWidth: Dimensions.get('window').width / 3,
-              margin:5,
+              margin: 5,
             }}
             resizeMode='contain'
           />

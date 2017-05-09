@@ -4,7 +4,6 @@ import { TouchableHighlight, View, Dimensions } from 'react-native';
 import { NOPAText } from '../index';
 
 const NOPAButton = ({
-                      fontSize,
                       fontFamily,
                       color,
                       textStyle,
@@ -26,7 +25,11 @@ const NOPAButton = ({
   >
     <View>
       <NOPAText
-        textStyle={{ padding: 20, textAlign: 'center', color: '#fff' }}
+        textStyle={{
+          padding: 20,
+          textAlign: 'center',
+          color: '#fff'
+        }}
       >
         {title}
       </NOPAText>
@@ -35,8 +38,6 @@ const NOPAButton = ({
 );
 
 NOPAButton.defaultProps = {
-  fontSize: 18,
-  fontFamily: 'Arial',
   textStyle: {
     marginTop: 10,
     marginBottom: 5,
@@ -49,8 +50,6 @@ NOPAButton.defaultProps = {
 NOPAButton.propTypes = {
   title: PropTypes.string.isRequired,
   onPress: PropTypes.func.isRequired,
-  fontSize: PropTypes.number,
-  fontFamily: PropTypes.string,
   color: PropTypes.string,
   textStyle: PropTypes.oneOfType([
     PropTypes.number,

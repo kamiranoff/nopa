@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NOPAText /> Should return the right default style 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "color": "#444",
+        "fontFamily": "monserratSemiBold",
+        "fontSize": 18,
+      },
+      Object {
+        "marginBottom": 5,
+        "marginTop": 10,
+      },
+    ]
+  }
+>
+  The right text!
+</Text>
+`;
+
+exports[`<NOPAText /> Should return the right overloaded style 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "color": "#444",
+        "fontFamily": "monserratSemiBold",
+        "fontSize": 18,
+      },
+      Object {
+        "marginBottom": 5,
+        "marginTop": 10,
+      },
+    ]
+  }
+>
+  Content
+</Text>
+`;
