@@ -4,7 +4,6 @@ const envs = {
   dev: {
     CLIENT_ID: secret.client_id,
     SERVICE_SECRET: secret.service_secret,
-    APP_SECRET: secret.app_secret,
     BASE_URL_WS: 'https://www.saltedge.com/api/v3/',
     API: {
       LOGINS: 'logins',
