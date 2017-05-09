@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Image, View, Dimensions } from 'react-native';
+import debounce from 'lodash.debounce';
 
 import { NOPAText, NOPAButton } from '../../common/index';
 import TitleDescription from '../../components/TitleDescription/TitleDescription';
@@ -8,6 +9,12 @@ import styles from './styles';
 const logo = require('../../../assets/logo/LogoNopa.png');
 
 class Homepage extends Component {
+
+  _navigate = debounce((pageName) => {
+    const { navigate } = this.props.navigation
+    navigate(pageName);
+  }, 500);
+
   render() {
     const { navigate } = this.props.navigation;
     return (
@@ -33,8 +40,7 @@ class Homepage extends Component {
           <NOPAButton
             title="Select your fake bank account"
             onPress={() => {
-              console.log('here');
-              navigate('BankSelectionPage')
+              this._navigate('BankSelectionPage')
             }}
           />
         </View>

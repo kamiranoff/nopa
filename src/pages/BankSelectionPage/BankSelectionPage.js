@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 
+import debounce from 'lodash.debounce';
+
 import { NOPAButton } from '../../common';
 
 import TitleDescription from '../../components/TitleDescription/TitleDescription';
@@ -11,8 +13,12 @@ import banks from '../../constants/banks';
 
 class BankSelectionPage extends Component {
 
-  render() {
+  _navigate = debounce((pageName) => {
     const { navigate } = this.props.navigation
+    navigate(pageName);
+  }, 500);
+
+  render() {
     return (
       <View style={styles.container}>
         <TitleDescription
@@ -25,7 +31,7 @@ class BankSelectionPage extends Component {
         <NOPAButton
           title="Continue"
           onPress={() => {
-            navigate('LoginPage')
+            this._navigate('LoginPage');
           }}
         />
       </View>

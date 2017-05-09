@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, TextInput } from 'react-native';
 import { connect } from 'react-redux';
+import debounce from 'lodash.debounce';
 
 import { fetchTransactions } from '../../redux/actions/transactions';
 
@@ -23,27 +24,29 @@ class LoginPage extends Component {
     };
   }
 
-  isLoading(state) {
-    this.setState({ loading: state });
-  }
+
+  _navigate = debounce((pageName) => {
+    const { navigate } = this.props.navigation
+    navigate(pageName);
+  }, 500);
 
   onPress() {
-    if(
-      this.state.surname
-      && this.state.sortCode
-      && this.state.accountNumber
-      && this.state.passcode
-      && this.state.memorableWord
-    ){
+    // if(
+    //   this.state.surname
+    //   && this.state.sortCode
+    //   && this.state.accountNumber
+    //   && this.state.passcode
+    //   && this.state.memorableWord
+    // ){
     this.props.fetchTransactions(this.state);
 
-    }
+//    }
   }
 
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.transactions.length) {
-      nextProps.navigation.navigate('TransactionsPage');
+      this._navigate('TransactionsPage');
     }
   }
 

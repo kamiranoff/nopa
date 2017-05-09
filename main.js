@@ -14,15 +14,15 @@ class Main extends React.Component {
     super();
 
     this.state = {
-      fontLoaded: false,
+      fontLoaded: false
     }
   }
 
-  async componentDidMount() {
+  async componentWillMount() {
     await Font.loadAsync({
       'monserratSemiBold': require('./assets/fonts/Montserrat-SemiBold.otf'),
       'robotoRegular': require('./assets/fonts/Roboto-Regular.ttf'),
-      'robotoBold': require('./assets/fonts/Roboto-Bold.ttf'),
+      'robotoBold': require('./assets/fonts/Roboto-Bold.ttf')
     });
     this.setState({ fontLoaded: true });
   }

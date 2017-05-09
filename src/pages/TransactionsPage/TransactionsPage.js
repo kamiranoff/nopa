@@ -53,10 +53,10 @@ class TransactionsPage extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{ flex: 2 }}>
+        <View style={{ flex: 2, marginVertical: 10 }}>
           <CustomerDetails />
         </View>
-        <View style={{ flex: 10 }}>
+        <View style={{ flex: 8 }}>
           <ListView
             dataSource={this.state.dataSource}
             renderRow={this._renderRow}
